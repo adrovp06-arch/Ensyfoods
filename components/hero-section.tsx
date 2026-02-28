@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { ChevronDown, ShoppingCart } from 'lucide-react'
 import { useCartStore } from '@/lib/cart-store'
+import Image from 'next/image'
 
 export function HeroSection() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -46,13 +47,16 @@ export function HeroSection() {
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <span 
-                className={`font-black text-xl sm:text-2xl tracking-tight transition-colors duration-300 ${
-                  isScrolled ? 'text-[#1B3A6B]' : 'text-white'
-                }`}
-              >
-                ENSYFOODS
-              </span>
+              <Image
+                src="/logo.png"
+                alt="ENSYFOODS"
+                width={140}
+                height={32}
+                className="h-7 sm:h-8 w-auto transition-all duration-300"
+                style={{
+                  filter: isScrolled ? 'none' : 'brightness(0) invert(1)'
+                }}
+              />
             </div>
 
             {/* Cart Button */}

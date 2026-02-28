@@ -9,6 +9,7 @@ export const starProducts: Product[] = [
     price: 39.75,
     unit: 'carton',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-15-ZG8COQ5iOcBiKv36k8qwx2fEWbNvwE.jpg',
+    emoji: '🥚',
     catalogType: 'star',
     priceTiers: [
       { quantity: '1 carton', price: 'Q39.75' },
@@ -24,6 +25,7 @@ export const starProducts: Product[] = [
     price: 49.00,
     unit: 'libra',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772241395201-rJUwUAsapZza1giaug99Fr71iBPvpM.png',
+    emoji: '☕',
     catalogType: 'star',
     badge: 'exclusive'
   },
@@ -35,6 +37,7 @@ export const starProducts: Product[] = [
     price: 33.00,
     unit: 'libra',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/grok_image_1772242254360-AOJ5OlCoPPyWsHhW6MPpEJHcVEQ5pa.jpg',
+    emoji: '🌭',
     catalogType: 'star',
     badge: 'parrillada'
   },
@@ -46,6 +49,7 @@ export const starProducts: Product[] = [
     price: 65.00,
     unit: 'bolsa 10lb',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772241661347-N3OmrtE8XjFSlxvsFpWn1Og8G5tv84.png',
+    emoji: '🔥',
     catalogType: 'star',
     badge: 'exclusive',
     priceTiers: [
@@ -64,6 +68,7 @@ export const catalogProducts: Product[] = [
     price: 35.00,
     unit: 'bolsa',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772297001474-hl8LUKGb54HCdCOXovgdkU5RLeW8ab.png',
+    emoji: '🍟',
     catalogType: 'catalog',
     productType: 'papas'
   },
@@ -75,6 +80,7 @@ export const catalogProducts: Product[] = [
     price: 70.00,
     unit: 'bolsa',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772296950146-o5dCRZhLyOJ4gpV5dXSPlMsY2GtP8Q.png',
+    emoji: '🍟',
     catalogType: 'catalog',
     productType: 'papas'
   },
@@ -86,6 +92,7 @@ export const catalogProducts: Product[] = [
     price: 191.00,
     unit: 'bolsa',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772298018627-qrH36bFbpJgQkCMSMNtw9C4BRPtgg1.png',
+    emoji: '🍗',
     badge: 'imported',
     catalogType: 'catalog',
     productType: 'pollo'
@@ -98,6 +105,7 @@ export const catalogProducts: Product[] = [
     price: 194.50,
     unit: 'bolsa',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-20-3FxOohf44RIBbxyDWVw8GM2Vxv6k4a.jpg',
+    emoji: '🍗',
     badge: 'imported',
     catalogType: 'catalog',
     productType: 'pollo'
@@ -109,7 +117,8 @@ export const catalogProducts: Product[] = [
     description: 'Filete de pechuga de pollo sin hueso.',
     price: 290.00,
     unit: 'bolsa',
-    image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600&h=400&fit=crop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772302800712-7EMiQu4Uza5ZvVD23f3o6OTE7XM0Ob.png',
+    emoji: '🍗',
     badge: 'imported',
     catalogType: 'catalog',
     productType: 'pollo'
@@ -121,7 +130,8 @@ export const catalogProducts: Product[] = [
     description: 'Caja de filete de pechuga, Q22/lb.',
     price: 880.00,
     unit: 'caja',
-    image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600&h=400&fit=crop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772302291408-KZBrWgU0b2N3OMxxXjPTdugYVyoEEk.png',
+    emoji: '🍗',
     badge: 'imported',
     catalogType: 'catalog',
     productType: 'pollo'
@@ -133,7 +143,8 @@ export const catalogProducts: Product[] = [
     description: 'Cuadril y pierna de pollo importado.',
     price: 86.00,
     unit: 'bolsa',
-    image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=600&h=400&fit=crop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772302140212-VIL9lzDCP1mifgoJlym7CaBrd0uYsM.png',
+    emoji: '🍗',
     badge: 'imported',
     catalogType: 'catalog',
     productType: 'pollo'
@@ -145,7 +156,8 @@ export const catalogProducts: Product[] = [
     description: 'Lomo de cerdo fresco, corte premium.',
     price: 22.10,
     unit: 'libra',
-    image: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=600&h=400&fit=crop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772302446685-c9SVzC5efDj1C9LNgjOVsgk5NY91qU.png',
+    emoji: '🥩',
     catalogType: 'catalog',
     productType: 'cerdo'
   },
@@ -156,7 +168,8 @@ export const catalogProducts: Product[] = [
     description: 'Costilla riblet para parrilla.',
     price: 205.00,
     unit: 'caja',
-    image: 'https://images.unsplash.com/photo-1544025162-d76978f1cd1e?w=600&h=400&fit=crop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772302708085-w6wZpAhPzAeAIcj6qJLbtIujnjEjsX.png',
+    emoji: '🥩',
     catalogType: 'catalog',
     productType: 'cerdo'
   },
@@ -168,6 +181,7 @@ export const catalogProducts: Product[] = [
     price: 192.50,
     unit: 'saco',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772241661347-N3OmrtE8XjFSlxvsFpWn1Og8G5tv84.png',
+    emoji: '🔥',
     catalogType: 'catalog',
     productType: 'carbon'
   }

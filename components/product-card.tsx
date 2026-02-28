@@ -113,18 +113,21 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
 
         {/* Price + CTA row */}
         <div className="mt-4 flex items-center justify-between gap-3">
-          {/* Price pill */}
-          <div className="flex items-baseline gap-0.5 bg-[#0A0F1E] px-3 py-1.5 sm:px-4 sm:py-2 rounded-[10px]">
-            <span className="text-[12px] text-[#E8752A]/70 font-medium" style={{ verticalAlign: 'super' }}>
+          {/* Price - clean typography without dark background */}
+          <div className="flex items-baseline gap-0.5">
+            <span className="text-[14px] font-bold text-[#E8752A]/75" style={{ alignSelf: 'flex-start', paddingTop: '4px' }}>
               Q
             </span>
-            <span className="text-[24px] sm:text-[28px] font-black text-white leading-none">
+            <span 
+              className="font-black text-[#E8752A] leading-none"
+              style={{ fontSize: 'clamp(28px, 3vw, 38px)', letterSpacing: '-1px' }}
+            >
               {product.price.toFixed(2).split('.')[0]}
             </span>
-            <span className="text-[14px] font-bold text-white/60">
+            <span className="text-[16px] font-bold text-[#E8752A]/60">
               .{product.price.toFixed(2).split('.')[1]}
             </span>
-            <span className="ml-1.5 text-[10px] text-white/40">
+            <span className="ml-1.5 text-[11px] text-gray-500 font-semibold bg-[rgba(27,58,107,0.07)] rounded px-2 py-0.5" style={{ alignSelf: 'flex-end', paddingBottom: '3px' }}>
               {product.unit}
             </span>
           </div>
@@ -176,10 +179,8 @@ function CatalogCard({ product }: { product: Product }) {
   const handleIncrement = () => updateQuantity(product.id, quantity + 1)
   const handleDecrement = () => updateQuantity(product.id, quantity - 1)
 
-  const bgColor = product.bgColor || '#FFFFFF'
-  // Products that need contain + bg color: filete pechuga, cuadril, lomo, costilla
-  const useContain = ['filete-pechuga-10lb', 'filete-pechuga-40lb', 'cuadril-pierna-hudson', 'lomo-cerdo', 'costilla-riblet'].includes(product.id)
-  const containBgColor = product.productType === 'cerdo' ? '#FDF0F5' : '#FDF5F0'
+  // Fallback bg colors during image load
+  const fallbackBg = product.productType === 'cerdo' ? '#FDF0F5' : product.productType === 'pollo' ? '#FDF5F0' : '#FFFFFF'
 
   return (
     <div
@@ -196,18 +197,16 @@ function CatalogCard({ product }: { product: Product }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image area - 48% aspect ratio on mobile, slightly taller on desktop */}
+      {/* Image area - 48% aspect ratio, all use object-fit: cover */}
       <div
         className="relative h-0 pb-[52%] sm:pb-[48%] overflow-hidden"
-        style={{ backgroundColor: useContain ? containBgColor : bgColor }}
+        style={{ backgroundColor: fallbackBg }}
       >
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className={`transition-transform duration-[450ms] ease-out ${
-            useContain ? 'object-contain p-4 drop-shadow-lg' : 'object-cover object-center'
-          }`}
+          className="object-cover object-center transition-transform duration-[450ms] ease-out"
           style={{
             transform: isHovered ? 'scale(1.05)' : 'scale(1)'
           }}
@@ -237,25 +236,25 @@ function CatalogCard({ product }: { product: Product }) {
       </div>
 
       {/* Card body */}
-      <div className="p-2.5 sm:p-3 flex flex-col gap-1 sm:gap-1.5">
+      <div className="p-2.5 sm:p-3 flex flex-col gap-1 sm:gap-1.5 flex-1">
         {/* Category tag */}
         <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-[#E8752A] font-bold">
           {product.category}
         </span>
 
-        {/* Product name */}
-        <h4 className="text-[12px] sm:text-[13px] font-extrabold text-[#1B3A6B] leading-tight line-clamp-1">
+        {/* Product name - 2 lines max, no truncation */}
+        <h4 className="text-[12px] sm:text-[14px] font-extrabold text-[#0F2548] leading-[1.25] line-clamp-2 mb-auto">
           {product.name}
         </h4>
 
         {/* Price + Add button */}
-        <div className="mt-1.5 sm:mt-2 flex items-center justify-between gap-2">
+        <div className="mt-2 flex items-center justify-between gap-2">
           {/* Price - clean typography without dark background */}
           <div className="flex items-baseline">
-            <span className="text-[11px] sm:text-[12px] font-bold text-[#E8752A]/80 mr-0.5" style={{ alignSelf: 'flex-start', paddingTop: '3px' }}>
+            <span className="text-[11px] sm:text-[11px] font-bold text-[#E8752A]/80 mr-0.5" style={{ alignSelf: 'flex-start', paddingTop: '3px' }}>
               Q
             </span>
-            <span className="text-[19px] sm:text-[22px] font-black text-[#1B3A6B] leading-none tracking-tight">
+            <span className="text-[19px] sm:text-[22px] font-black text-[#1B3A6B] leading-none tracking-[-0.3px]">
               {product.price.toFixed(2).split('.')[0]}
             </span>
             <span className="text-[10px] sm:text-[11px] font-bold text-[#1B3A6B]/50 ml-0.5">
@@ -266,30 +265,39 @@ function CatalogCard({ product }: { product: Product }) {
             </span>
           </div>
 
-          {/* Add button */}
+          {/* Add button - full width pill */}
           {quantity === 0 ? (
             <button
               onClick={handleAdd}
-              className="bg-[#E8752A] text-white h-8 sm:h-9 px-3 sm:px-4 rounded-full font-bold text-[11px] sm:text-[12px] transition-all duration-200 hover:shadow-md hover:shadow-[#E8752A]/20"
+              className="flex-1 sm:flex-none bg-[#E8752A] text-white h-8 sm:h-10 px-3 sm:px-5 rounded-full font-extrabold text-[11px] sm:text-[13px] flex items-center justify-center gap-1.5 transition-all duration-[220ms] hover:-translate-y-0.5"
+              style={{
+                boxShadow: '0 4px 14px rgba(232,117,42,0.35)'
+              }}
             >
-              +
+              <span className="hidden sm:inline">Agregar</span>
+              <span className="sm:hidden">+</span>
             </button>
           ) : (
-            <div className="flex items-center gap-0.5 bg-[#0A0F1E] rounded-full px-1 sm:px-1.5 py-0.5">
+            <div 
+              className="flex items-center gap-0.5 bg-[#0A0F1E] rounded-full px-1.5 py-0.5"
+              style={{ boxShadow: '0 4px 14px rgba(0,0,0,0.3)' }}
+            >
               <button
                 onClick={handleDecrement}
-                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
+                className="w-7 h-7 rounded-full flex items-center justify-center text-white hover:bg-[rgba(232,117,42,0.6)] transition-colors"
+                style={{ background: 'rgba(255,255,255,0.1)' }}
               >
-                <Minus className="w-3 h-3" />
+                <Minus className="w-3.5 h-3.5" />
               </button>
-              <span className="w-5 sm:w-6 text-center text-white font-bold text-xs">
+              <span className="w-6 text-center text-white font-black text-[15px]">
                 {quantity}
               </span>
               <button
                 onClick={handleIncrement}
-                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
+                className="w-7 h-7 rounded-full flex items-center justify-center text-white hover:bg-[rgba(232,117,42,0.6)] transition-colors"
+                style={{ background: 'rgba(255,255,255,0.1)' }}
               >
-                <Plus className="w-3 h-3" />
+                <Plus className="w-3.5 h-3.5" />
               </button>
             </div>
           )}

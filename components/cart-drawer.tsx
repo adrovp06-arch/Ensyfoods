@@ -116,7 +116,21 @@ export function CartDrawer() {
             </div>
           ) : (
             <div className="space-y-3">
-              {items.map((item) => (
+              {items.map((item) => {
+                // Get correct emoji based on product name
+                const getEmoji = () => {
+                  if (item.emoji) return item.emoji
+                  const name = item.name.toLowerCase()
+                  if (name.includes('huevo')) return '🥚'
+                  if (name.includes('cafe') || name.includes('café')) return '☕'
+                  if (name.includes('chorizo')) return '🌭'
+                  if (name.includes('carbon') || name.includes('carbón')) return '🔥'
+                  if (name.includes('papa')) return '🍟'
+                  if (name.includes('pechuga') || name.includes('pollo') || name.includes('cuadril') || name.includes('pechuguita') || name.includes('poporopos')) return '🍗'
+                  if (name.includes('lomo') || name.includes('costilla') || name.includes('cerdo')) return '🥩'
+                  return '🛒'
+                }
+                return (
                 <div
                   key={item.id}
                   className="flex items-center gap-3 p-3 rounded-xl"
@@ -132,7 +146,7 @@ export function CartDrawer() {
                       backgroundColor: 'rgba(255,255,255,0.06)'
                     }}
                   >
-                    {item.emoji || '📦'}
+                    {getEmoji()}
                   </div>
 
                   {/* Info */}
@@ -176,7 +190,8 @@ export function CartDrawer() {
                     Q{(item.price * item.quantity).toFixed(2)}
                   </div>
                 </div>
-              ))}
+              )})}
+            
 
               {/* Upsell nudge */}
               {showEggsUpsell && (
