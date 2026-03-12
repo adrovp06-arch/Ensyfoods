@@ -12,7 +12,7 @@
   --ensy-cream-dark: #EDE9E3;
   --ensy-whatsapp: #25D366;
   --ensy-drawer: #111827;
-  
+
   --background: #F7F4EF;
   --foreground: #0A0F1E;
   --card: #FFFFFF;
@@ -128,7 +128,21 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* HERO BACKGROUND */
+
+.hero-bg {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.45)),
+    url("https://user4340.na.imgto.link/public/20260312/image.avif");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
