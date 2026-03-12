@@ -30,14 +30,14 @@ export const starProducts: Product[] = [
     badge: 'exclusive'
   },
   {
-    id: 'chorizo-argentino',
-    name: 'Chorizo Argentino',
-    category: 'Cerdo',
-    description: 'Chorizo artesanal estilo argentino, ideal para parrillada.',
-    price: 33.00,
-    unit: 'libra',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/grok_image_1772242254360-AOJ5OlCoPPyWsHhW6MPpEJHcVEQ5pa.jpg',
-    emoji: '🌭',
+    id: 'tortitas-carne',
+    name: 'Tortitas de Carne Gold Premium',
+    category: 'Carne',
+    description: 'Tortitas de carne premium, perfectas para parrillada. Gold Premium Beef.',
+    price: 45.00,
+    unit: 'paquete',
+    image: 'https://user4340.na.imgto.link/public/20260312/descarga.avif',
+    emoji: '🍔',
     catalogType: 'star',
     badge: 'parrillada'
   },
@@ -148,6 +148,19 @@ export const catalogProducts: Product[] = [
     badge: 'imported',
     catalogType: 'catalog',
     productType: 'pollo'
+  },
+  {
+    id: 'chorizo-argentino',
+    name: 'Chorizo Argentino',
+    category: 'Cerdo',
+    description: 'Chorizo artesanal estilo argentino, ideal para parrillada.',
+    price: 33.00,
+    unit: 'libra',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/grok_image_1772242254360-AOJ5OlCoPPyWsHhW6MPpEJHcVEQ5pa.jpg',
+    emoji: '🌭',
+    badge: 'parrillada',
+    catalogType: 'catalog',
+    productType: 'cerdo'
   },
   {
     id: 'lomo-cerdo',
