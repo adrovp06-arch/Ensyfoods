@@ -49,8 +49,6 @@ export function HeroSection() {
 
           <div className="flex items-center justify-between h-16 sm:h-20">
 
-            {/* LOGO */}
-
             <Image
               src="/logo.png"
               alt="ENSYFOODS"
@@ -61,8 +59,6 @@ export function HeroSection() {
                 filter: isScrolled ? "none" : "brightness(0) invert(1)"
               }}
             />
-
-            {/* CART */}
 
             <button
               onClick={openCart}
@@ -94,20 +90,21 @@ export function HeroSection() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
 
-        {/* IMAGE BACKGROUND */}
+        {/* IMAGEN FONDO */}
 
         <Image
           src="https://i.ibb.co/N6TWMFBf/grok-image-1773359143886.jpg"
           alt="Productos ENSYFOODS"
           fill
           priority
+          unoptimized
           sizes="100vw"
-          className="object-cover object-[60%_40%]"
+          className="object-cover object-[65%_45%]"
         />
 
-        {/* OVERLAY PARA LEGIBILIDAD */}
+        {/* OVERLAY */}
 
-        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-black/50" />
 
         {/* TEXTURA SUTIL */}
 
@@ -120,7 +117,6 @@ export function HeroSection() {
           }}
         />
 
-
         {/* CONTENIDO */}
 
         <div className="relative z-10 flex flex-col items-center text-center px-6">
@@ -129,7 +125,7 @@ export function HeroSection() {
             className={`text-white font-black tracking-tight transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             style={{
-              fontSize: "clamp(48px, 12vw, 120px)"
+              fontSize: "clamp(52px, 12vw, 120px)"
             }}
           >
             ENSYFOODS
@@ -154,8 +150,7 @@ export function HeroSection() {
 
         </div>
 
-
-        {/* INDICADOR SCROLL */}
+        {/* SCROLL INDICATOR */}
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
 
