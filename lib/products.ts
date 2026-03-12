@@ -32,7 +32,7 @@ export const starProducts: Product[] = [
   {
     id: 'tortitas-carne',
     name: 'Tortitas de Carne Gold Premium',
-    category: 'Cerdo',
+    category: 'Carne',
     description: 'Tortitas de carne premium, perfectas para parrillada. Gold Premium Beef.',
     price: 45.00,
     unit: 'paquete',
