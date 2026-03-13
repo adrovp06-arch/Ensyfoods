@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect } from 'react'
+import Image from 'next/image'
 import { X, Minus, Plus, Trash2, Copy, Mail } from 'lucide-react'
 import { useCartStore } from '@/lib/cart-store'
 
@@ -18,7 +19,6 @@ export function CartDrawer() {
   const eggsItem = items.find((item) => item.id === 'huevos-30')
   const showEggsUpsell = eggsItem && eggsItem.quantity > 0 && eggsItem.quantity < 3
 
-  // Lock body scroll when drawer is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -31,11 +31,11 @@ export function CartDrawer() {
   }, [isOpen])
 
   const generateWhatsAppMessage = () => {
-    let message = '¡Hola ENSYFOODS! Quiero hacer un pedido:\n\n'
+    let message = 'Hola ENSYFOODS, quiero realizar un pedido:\n\n'
     items.forEach((item) => {
       message += `• ${item.quantity}x ${item.name} - Q${(item.price * item.quantity).toFixed(2)}\n`
     })
-    message += `\n💰 TOTAL: Q${totalPrice.toFixed(2)}\n\nGracias!`
+    message += `\n💰 TOTAL: Q${totalPrice.toFixed(2)}\n(Precios incluyen IVA)`
     return encodeURIComponent(message)
   }
 
@@ -66,26 +66,17 @@ export function CartDrawer() {
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-50 transition-opacity duration-300 ${
-          isOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
-        style={{
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          backdropFilter: 'blur(4px)'
-        }}
+        className={`fixed inset-0 z-50 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+        style={{ backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}
         onClick={closeCart}
       />
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-[400px] z-50 flex flex-col transition-transform duration-[320ms] ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{
-          transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
-        }}
+        className={`fixed top-0 right-0 h-full w-full sm:w-[400px] z-50 flex flex-col transition-transform duration-[320ms] ${isOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
       >
         {/* Header */}
         <div className="flex items-start justify-between p-5 bg-[#0A0F1E]">
@@ -105,32 +96,18 @@ export function CartDrawer() {
           </button>
         </div>
 
-        {/* Items area */}
+        {/* Items */}
         <div className="flex-1 overflow-y-auto bg-[#111827] p-4">
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center">
               <span className="text-6xl opacity-50">🛒</span>
               <p className="mt-4 text-white/25 text-sm">
-                Todavia vacio. Agrega algo rico!
+                Todavía vacío. ¡Agrega algo rico!
               </p>
             </div>
           ) : (
             <div className="space-y-3">
-              {items.map((item) => {
-                // Get correct emoji based on product name
-                const getEmoji = () => {
-                  if (item.emoji) return item.emoji
-                  const name = item.name.toLowerCase()
-                  if (name.includes('huevo')) return '🥚'
-                  if (name.includes('cafe') || name.includes('café')) return '☕'
-                  if (name.includes('chorizo')) return '🌭'
-                  if (name.includes('carbon') || name.includes('carbón')) return '🔥'
-                  if (name.includes('papa')) return '🍟'
-                  if (name.includes('pechuga') || name.includes('pollo') || name.includes('cuadril') || name.includes('pechuguita') || name.includes('poporopos')) return '🍗'
-                  if (name.includes('lomo') || name.includes('costilla') || name.includes('cerdo')) return '🥩'
-                  return '🛒'
-                }
-                return (
+              {items.map((item) => (
                 <div
                   key={item.id}
                   className="flex items-center gap-3 p-3 rounded-xl"
@@ -139,14 +116,16 @@ export function CartDrawer() {
                     border: '1px solid rgba(255,255,255,0.06)'
                   }}
                 >
-                  {/* Emoji */}
-                  <div
-                    className="w-11 h-11 rounded-[10px] flex items-center justify-center text-2xl flex-shrink-0"
-                    style={{
-                      backgroundColor: 'rgba(255,255,255,0.06)'
-                    }}
+                  {/* ✅ CAMBIO: foto del producto en lugar de emoji */}
+                  <div className="w-14 h-14 rounded-[10px] overflow-hidden flex-shrink-0 relative"
+                    style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
                   >
-                    {getEmoji()}
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
                   {/* Info */}
@@ -156,7 +135,6 @@ export function CartDrawer() {
                     </h4>
                     <p className="text-white/35 text-[10px]">{item.unit}</p>
 
-                    {/* Quantity controls */}
                     <div className="mt-2 flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -175,7 +153,6 @@ export function CartDrawer() {
                       >
                         <Plus className="w-3 h-3" />
                       </button>
-
                       <button
                         onClick={() => removeItem(item.id)}
                         className="ml-auto text-white/20 hover:text-white/80 transition-colors"
@@ -190,10 +167,8 @@ export function CartDrawer() {
                     Q{(item.price * item.quantity).toFixed(2)}
                   </div>
                 </div>
-              )})}
-            
+              ))}
 
-              {/* Upsell nudge */}
               {showEggsUpsell && (
                 <div
                   className="p-3 rounded-xl text-[13px]"
@@ -212,20 +187,15 @@ export function CartDrawer() {
 
         {/* Footer */}
         <div className="bg-[#0A0F1E] p-5">
-          {/* Subtotal */}
           {items.length > 0 && (
             <>
               <div className="flex items-center justify-between text-white/40 text-sm mb-2">
                 <span>Subtotal</span>
                 <span>Q{totalPrice.toFixed(2)}</span>
               </div>
-
-              {/* Total */}
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <span className="text-white/30 text-[10px] uppercase tracking-wider block">
-                    TOTAL
-                  </span>
+                  <span className="text-white/30 text-[10px] uppercase tracking-wider block">TOTAL</span>
                   <span className="text-white/70 text-[13px]">IVA incluido</span>
                 </div>
                 <div className="text-[#E8752A] font-black text-[32px]">
@@ -236,7 +206,6 @@ export function CartDrawer() {
             </>
           )}
 
-          {/* CTA buttons */}
           <div className="space-y-2">
             <button
               onClick={handleWhatsAppOrder}
@@ -272,9 +241,8 @@ export function CartDrawer() {
             </button>
           </div>
 
-          {/* Footer note */}
           <p className="mt-4 text-center text-white/20 text-[10px]">
-            Entregas segun dias de despacho
+            Entregas según días de despacho
           </p>
         </div>
       </div>
