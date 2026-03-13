@@ -31,10 +31,10 @@ export const starProducts: Product[] = [
   },
   {
     id: 'tortitas-carne',
-    name: 'Tortitas de Carne Gold Premium',
+    name: 'Tortitas de Carne Premium - Viuda New York y Rib Eye',
     category: 'Carne',
-    description: 'Tortitas de carne premium, perfectas para parrillada. Gold Premium Beef.',
-    price: 45.00,
+    description: 'Paquete de 6 a 7 tortitas a base de cortes premium Viuda New York y Rib Eye. Ideales para parrilladas gourmet.',
+    price: 196.00,
     unit: 'paquete',
     image: 'https://user4340.na.imgto.link/public/20260312/descarga.avif',
     emoji: '🍔',
