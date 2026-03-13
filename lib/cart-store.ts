@@ -14,7 +14,7 @@ export interface Product {
   bgColor?: string
   priceTiers?: { quantity: string; price: string; savings?: string }[]
   catalogType?: 'star' | 'catalog'
-  productType?: 'pollo' | 'cerdo' | 'papas' | 'carbon' | 'otros'
+  productType?: 'pollo' | 'cerdo' | 'papas' | 'carbón' | 'otros'
 }
 
 export interface CartItem extends Product {

@@ -5,14 +5,14 @@ import { X, Plus } from 'lucide-react'
 import { ProductCard } from './product-card'
 import { catalogProducts } from '@/lib/products'
 
-type Category = 'todo' | 'papas' | 'pollo' | 'cerdo' | 'carbon'
+type Category = 'todo' | 'papas' | 'pollo' | 'cerdo' | 'carbón'
 
 const categories: { id: Category; label: string; emoji: string }[] = [
   { id: 'todo', label: 'Todos los Productos', emoji: '🛒' },
   { id: 'papas', label: 'Papas Fritas', emoji: '🍟' },
   { id: 'pollo', label: 'Pollo', emoji: '🍗' },
   { id: 'cerdo', label: 'Cerdo', emoji: '🥩' },
-  { id: 'carbon', label: 'Carbón', emoji: '🔥' }
+  { id: 'carbón', label: 'Carbón', emoji: '🔥' }
 ]
 
 export function CatalogSection() {
@@ -93,8 +93,8 @@ export function CatalogSection() {
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
                   className={`flex-shrink-0 flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap ${activeCategory === cat.id
-                      ? 'bg-[#E8752A] text-white shadow-md'
-                      : 'text-gray-600 hover:text-[#E8752A] hover:bg-gray-50'
+                    ? 'bg-[#E8752A] text-white shadow-md'
+                    : 'text-gray-600 hover:text-[#E8752A] hover:bg-gray-50'
                     }`}
                 >
                   <span>{cat.emoji}</span>
@@ -110,8 +110,8 @@ export function CatalogSection() {
               <div
                 key={product.id}
                 className={`transition-all duration-500 ease-out ${isVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-[18px]'
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-[18px]'
                   }`}
                 style={{ transitionDelay: `${0.1 + index * 0.05}s` }}
               >

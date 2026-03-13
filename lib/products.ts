@@ -3,25 +3,25 @@ import { Product } from './cart-store'
 export const starProducts: Product[] = [
   {
     id: 'huevos-30',
-    name: 'Carton de 30 Huevos Extra Grande',
+    name: 'Cartón de 30 Huevos Extra Grande',
     category: 'Huevos',
-    description: 'Huevos frescos extra grandes, seleccion premium.',
+    description: 'Huevos frescos extra grandes, selección premium.',
     price: 39.75,
-    unit: 'carton',
+    unit: 'cartón',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-15-ZG8COQ5iOcBiKv36k8qwx2fEWbNvwE.jpg',
     emoji: '🥚',
     catalogType: 'star',
     priceTiers: [
-      { quantity: '1 carton', price: 'Q39.75' },
+      { quantity: '1 cartón', price: 'Q39.75' },
       { quantity: '3+ cartones', price: 'Q38.50', savings: '-Q3.75' },
       { quantity: 'Caja de 12', price: 'Q38.33 c/u' }
     ]
   },
   {
-    id: 'cafe-santa-cruz',
-    name: 'Cafe Santa Cruz',
-    category: 'Cafe',
-    description: 'Cafe guatemalteco de altura, molido o en grano. Finca Cangrejo de Oro.',
+    id: 'café-santa-cruz',
+    name: 'Café Santa Cruz',
+    category: 'Café',
+    description: 'Café guatemalteco de altura, molido o en grano. Finca Cangrejo de Oro.',
     price: 49.00,
     unit: 'libra',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772241395201-rJUwUAsapZza1giaug99Fr71iBPvpM.png',
@@ -42,10 +42,10 @@ export const starProducts: Product[] = [
     badge: 'parrillada'
   },
   {
-    id: 'carbon-santa-cruz',
-    name: 'Carbon Premium Santa Cruz',
-    category: 'Carbon',
-    description: 'Carbon premium de larga duracion, ideal para asados.',
+    id: 'carbón-santa-cruz',
+    name: 'Carbón Premium Santa Cruz',
+    category: 'Carbón',
+    description: 'Carbón premium de larga duracion, ideal para asados.',
     price: 65.00,
     unit: 'bolsa 10lb',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772241661347-N3OmrtE8XjFSlxvsFpWn1Og8G5tv84.png',
@@ -187,16 +187,16 @@ export const catalogProducts: Product[] = [
     productType: 'cerdo'
   },
   {
-    id: 'saco-carbon-35lb',
-    name: 'Saco Carbon 35lb',
-    category: 'Carbon',
-    description: 'Carbon premium en saco grande.',
+    id: 'saco-carbón-35lb',
+    name: 'Saco Carbón 35lb',
+    category: 'Carbón',
+    description: 'Carbón premium en saco grande.',
     price: 192.50,
     unit: 'saco',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1772241661347-N3OmrtE8XjFSlxvsFpWn1Og8G5tv84.png',
     emoji: '🔥',
     catalogType: 'catalog',
-    productType: 'carbon'
+    productType: 'carbón'
   }
 ]
 

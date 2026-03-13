@@ -58,7 +58,7 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
             transform: isHovered ? 'scale(1.04)' : 'scale(1)',
             objectPosition:
               product.id === 'huevos-30' ? 'center 30%' :
-                product.id === 'carbon-santa-cruz' ? 'center 40%' : 'center center'
+                product.id === 'carbón-santa-cruz' ? 'center 40%' : 'center center'
           }}
         />
         {product.badge === 'exclusive' && (
