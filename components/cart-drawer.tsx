@@ -33,7 +33,7 @@ export function CartDrawer() {
   const generateWhatsAppMessage = () => {
     let message = 'Hola ENSYFOODS, quiero realizar un pedido:\n\n'
     items.forEach((item) => {
-      message += `• ${item.quantity}x ${item.name} - Q${(item.price * item.quantity).toFixed(2)}\n`
+      message += `• ${item.quantity}x ${item.name} - Q${(item.effectivePrice * item.quantity).toFixed(2)}\n`
     })
     message += `\n💰 TOTAL: Q${totalPrice.toFixed(2)}\n(Precios incluyen IVA)`
     return encodeURIComponent(message)
@@ -47,7 +47,7 @@ export function CartDrawer() {
   const handleCopyOrder = () => {
     let text = 'Pedido ENSYFOODS:\n\n'
     items.forEach((item) => {
-      text += `• ${item.quantity}x ${item.name} - Q${(item.price * item.quantity).toFixed(2)}\n`
+      text += `• ${item.quantity}x ${item.name} - Q${(item.effectivePrice * item.quantity).toFixed(2)}\n`
     })
     text += `\nTOTAL: Q${totalPrice.toFixed(2)}`
     navigator.clipboard.writeText(text)
@@ -56,7 +56,7 @@ export function CartDrawer() {
   const handleEmailOrder = () => {
     let body = 'Pedido ENSYFOODS:%0A%0A'
     items.forEach((item) => {
-      body += `• ${item.quantity}x ${item.name} - Q${(item.price * item.quantity).toFixed(2)}%0A`
+      body += `• ${item.quantity}x ${item.name} - Q${(item.effectivePrice * item.quantity).toFixed(2)}%0A`
     })
     body += `%0ATOTAL: Q${totalPrice.toFixed(2)}`
     window.location.href = `mailto:contabilidad@ensyco.gt?subject=Nuevo Pedido ENSYFOODS&body=${body}`
@@ -164,7 +164,7 @@ export function CartDrawer() {
 
                   {/* Subtotal */}
                   <div className="text-[#E8752A] font-black text-[16px] flex-shrink-0">
-                    Q{(item.price * item.quantity).toFixed(2)}
+                    Q{(item.effectivePrice * item.quantity).toFixed(2)}
                   </div>
                 </div>
               ))}

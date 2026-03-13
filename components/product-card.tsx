@@ -12,11 +12,13 @@ interface ProductCardProps {
 
 export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const { addItem, updateQuantity, getItemQuantity } = useCartStore()
+  const { addItem, updateQuantity, getItemQuantity, openCart } = useCartStore()
   const quantity = getItemQuantity(product.id)
 
+  // ✅ Agrega y abre el carrito para star cards también
   const handleAdd = () => {
     addItem(product)
+    openCart()
   }
 
   const handleIncrement = () => {
@@ -54,8 +56,9 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
           className="object-cover transition-transform duration-500 ease-out"
           style={{
             transform: isHovered ? 'scale(1.04)' : 'scale(1)',
-            objectPosition: product.id === 'huevos-30' ? 'center 30%' :
-              product.id === 'carbon-santa-cruz' ? 'center 40%' : 'center center'
+            objectPosition:
+              product.id === 'huevos-30' ? 'center 30%' :
+                product.id === 'carbon-santa-cruz' ? 'center 40%' : 'center center'
           }}
         />
         {product.badge === 'exclusive' && (
@@ -84,6 +87,7 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
           {product.description}
         </p>
 
+        {/* Tiers de precio */}
         {product.priceTiers && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {product.priceTiers.map((tier, index) => (
@@ -92,7 +96,7 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
                 className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] bg-[rgba(27,58,107,0.06)] text-[#1B3A6B]"
               >
                 <span>{tier.quantity}</span>
-                <span className="font-semibold">&rarr;</span>
+                <span className="font-semibold">→</span>
                 <span className="font-bold">{tier.price}</span>
                 {tier.savings && (
                   <span className="text-green-600 font-semibold">{tier.savings}</span>
@@ -104,7 +108,10 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
 
         <div className="mt-4 flex items-center justify-between gap-3">
           <div className="flex items-baseline gap-0.5">
-            <span className="text-[14px] font-bold text-[#E8752A]/75" style={{ alignSelf: 'flex-start', paddingTop: '4px' }}>
+            <span
+              className="text-[14px] font-bold text-[#E8752A]/75"
+              style={{ alignSelf: 'flex-start', paddingTop: '4px' }}
+            >
               Q
             </span>
             <span
@@ -116,40 +123,21 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
             <span className="text-[16px] font-bold text-[#E8752A]/60">
               .{product.price.toFixed(2).split('.')[1]}
             </span>
-            <span className="ml-1.5 text-[11px] text-gray-500 font-semibold bg-[rgba(27,58,107,0.07)] rounded px-2 py-0.5" style={{ alignSelf: 'flex-end', paddingBottom: '3px' }}>
+            <span
+              className="ml-1.5 text-[11px] text-gray-500 font-semibold bg-[rgba(27,58,107,0.07)] rounded px-2 py-0.5"
+              style={{ alignSelf: 'flex-end', paddingBottom: '3px' }}
+            >
               {product.unit}
             </span>
           </div>
 
-          {quantity === 0 ? (
-            <button
-              onClick={handleAdd}
-              className="flex-shrink-0 bg-[#E8752A] text-white px-4 py-2.5 sm:px-5 rounded-full font-bold text-[13px] sm:text-[14px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#E8752A]/30"
-            >
-              Agregar
-            </button>
-          ) : (
-            <div
-              className="flex items-center gap-1 bg-[#0A0F1E] rounded-full px-2 py-1 transition-all duration-[220ms]"
-              style={{ transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
-            >
-              <button
-                onClick={handleDecrement}
-                className="w-7 h-7 rounded-full flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-colors"
-              >
-                <Minus className="w-3.5 h-3.5" />
-              </button>
-              <span className="w-6 text-center text-white font-black text-sm">
-                {quantity}
-              </span>
-              <button
-                onClick={handleIncrement}
-                className="w-7 h-7 rounded-full flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-colors"
-              >
-                <Plus className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          )}
+          {/* ✅ Siempre botón naranja — agrega y abre carrito */}
+          <button
+            onClick={handleAdd}
+            className="flex-shrink-0 bg-[#E8752A] text-white px-5 py-2.5 rounded-full font-bold text-[13px] sm:text-[14px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#E8752A]/30"
+          >
+            Agregar
+          </button>
         </div>
       </div>
     </div>
@@ -158,7 +146,7 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
 
 function CatalogCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
-  const { addItem, updateQuantity, getItemQuantity, openCart } = useCartStore()
+  const { addItem, getItemQuantity, openCart } = useCartStore()
   const quantity = getItemQuantity(product.id)
 
   const handleAdd = () => {
@@ -166,10 +154,9 @@ function CatalogCard({ product }: { product: Product }) {
     openCart()
   }
 
-  const handleIncrement = () => updateQuantity(product.id, quantity + 1)
-  const handleDecrement = () => updateQuantity(product.id, quantity - 1)
-
-  const fallbackBg = product.productType === 'cerdo' ? '#FDF0F5' : product.productType === 'pollo' ? '#FDF5F0' : '#FFFFFF'
+  const fallbackBg =
+    product.productType === 'cerdo' ? '#FDF0F5' :
+      product.productType === 'pollo' ? '#FDF5F0' : '#FFFFFF'
 
   return (
     <div
@@ -229,7 +216,10 @@ function CatalogCard({ product }: { product: Product }) {
 
         <div className="mt-2 flex items-center justify-between gap-2">
           <div className="flex items-baseline">
-            <span className="text-[11px] font-bold text-[#E8752A]/80 mr-0.5" style={{ alignSelf: 'flex-start', paddingTop: '3px' }}>
+            <span
+              className="text-[11px] font-bold text-[#E8752A]/80 mr-0.5"
+              style={{ alignSelf: 'flex-start', paddingTop: '3px' }}
+            >
               Q
             </span>
             <span className="text-[19px] sm:text-[22px] font-black text-[#1B3A6B] leading-none tracking-[-0.3px]">
@@ -243,7 +233,6 @@ function CatalogCard({ product }: { product: Product }) {
             </span>
           </div>
 
-          {/* ✅ Siempre muestra "Agregar" — sin + en mobile */}
           <button
             onClick={handleAdd}
             className="flex-shrink-0 bg-[#E8752A] text-white h-8 sm:h-10 px-3 sm:px-5 rounded-full font-extrabold text-[11px] sm:text-[13px] flex items-center justify-center transition-all duration-[220ms] hover:-translate-y-0.5"
