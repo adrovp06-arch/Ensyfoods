@@ -1,26 +1,26 @@
-import { HeroSection } from '@/components/hero-section'
-import { WhySection } from '@/components/why-section'
-import { StarProducts } from '@/components/star-products'
-import { CatalogSection } from '@/components/catalog-section'
-import { CartDrawer } from '@/components/cart-drawer'
-import { ContactFooter } from '@/components/contact-footer'
+import { HeroSection } from "@/components/hero-section"
+import { StarProducts } from "@/components/star-products"
+import { CatalogSection } from "@/components/catalog-section"
+import { CartDrawer } from "@/components/cart-drawer"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main>
+    <>
+      <main className="min-h-screen bg-white">
 
-      <HeroSection />
+        {/* Sección Hero con imagen de fondo y CTA */}
+        <HeroSection />
 
-      <WhySection />
+        {/* Productos destacados */}
+        <StarProducts />
 
-      <StarProducts />
+        {/* Catálogo completo de productos */}
+        <CatalogSection />
 
-      <CatalogSection />
+      </main>
 
-      <ContactFooter />
-
+      {/* Drawer del carrito (fuera del main para evitar conflictos de overflow) */}
       <CartDrawer />
-
-    </main>
+    </>
   )
 }
