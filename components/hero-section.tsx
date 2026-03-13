@@ -2,15 +2,11 @@
 
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { ChevronDown, ShoppingCart } from "lucide-react"
-import { useCartStore } from "@/lib/cart-store"
+import { ChevronDown } from "lucide-react"
 
 export function HeroSection() {
 
   const [isLoaded, setIsLoaded] = useState(false)
-
-  const { getTotalItems, openCart } = useCartStore()
-  const totalItems = getTotalItems()
 
   useEffect(() => {
     setIsLoaded(true)
@@ -25,46 +21,45 @@ export function HeroSection() {
 
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-      {/* IMAGEN DE FONDO RESPONSIVE */}
+      {/* IMAGEN DESKTOP */}
 
-      <picture className="absolute inset-0">
-
-        <source
-          media="(max-width:768px)"
-          srcSet="/image(1).jpg"
-        />
-
-        <Image
-          src="/image.jpg"
-          alt="Productos ENSYFOODS"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-          quality={100}
-        />
-
-      </picture>
-
-
-      {/* OVERLAY OSCURO PARA MEJORAR CONTRASTE */}
-
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70"></div>
-
-
-      {/* TEXTURA SUTIL */}
-
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)",
-          backgroundSize: "28px 28px"
-        }}
+      <Image
+        src="/image.jpg"
+        alt="Productos ENSYFOODS"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center hidden md:block"
+        quality={100}
       />
 
+      {/* IMAGEN MOVIL */}
 
-      {/* CONTENIDO HERO */}
+      <Image
+        src="/image.jpg"
+        alt="Productos ENSYFOODS"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center hidden md:block"
+        quality={100}
+      />
+
+      <Image
+        src="/image-mobile.jpg"
+        alt="Productos ENSYFOODS"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center md:hidden"
+        quality={100}
+      />
+
+      {/* OVERLAY */}
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
+
+      {/* CONTENIDO */}
 
       <div className="relative z-10 flex flex-col items-center text-center px-6">
 
@@ -95,8 +90,7 @@ export function HeroSection() {
 
       </div>
 
-
-      {/* INDICADOR SCROLL */}
+      {/* SCROLL */}
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
 
@@ -109,5 +103,6 @@ export function HeroSection() {
       </div>
 
     </section>
+
   )
 }
