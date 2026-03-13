@@ -38,23 +38,16 @@ export function HeroSection() {
   }
 
   return (
-
     <>
-
       {/* NAVBAR */}
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-            ? "bg-[#F7F4EF] shadow-md"
-            : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-[#F7F4EF] shadow-md" : "bg-transparent"
           }`}
       >
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="flex items-center justify-between h-16 sm:h-20">
-
-            {/* LOGO */}
 
             <Image
               src="/logo.png"
@@ -63,13 +56,9 @@ export function HeroSection() {
               height={32}
               className="h-7 sm:h-8 w-auto transition-all duration-300"
               style={{
-                filter: isScrolled
-                  ? "none"
-                  : "brightness(0) invert(1)"
+                filter: isScrolled ? "none" : "brightness(0) invert(1)"
               }}
             />
-
-            {/* CART */}
 
             <button
               onClick={openCart}
@@ -81,11 +70,9 @@ export function HeroSection() {
               <span className="hidden sm:inline">Carrito</span>
 
               {totalItems > 0 && (
-
                 <span className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 bg-[#0A0F1E] text-white text-xs font-bold rounded-full flex items-center justify-center animate-bounce">
                   {totalItems}
                 </span>
-
               )}
 
             </button>
@@ -93,7 +80,6 @@ export function HeroSection() {
           </div>
 
         </div>
-
       </nav>
 
 
@@ -101,24 +87,26 @@ export function HeroSection() {
 
       <section
         ref={heroRef}
-        className="hero-bg relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
 
-        {/* ESENCIAL background text */}
+        {/* IMAGEN FONDO */}
 
-        <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 text-white font-black select-none pointer-events-none whitespace-nowrap"
-          style={{
-            fontSize: "clamp(80px, 19vw, 300px)",
-            opacity: 0.02,
-            lineHeight: 0.8
-          }}
-        >
-          ESENCIAL
-        </div>
+        <Image
+          src="https://i.ibb.co/N6TWMFBf/grok-image-1773359143886.jpg"
+          alt="Productos ENSYFOODS"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-[65%_45%]"
+        />
 
+        {/* OVERLAY */}
 
-        {/* Dot texture */}
+        <div className="absolute inset-0 bg-black/50" />
+
+        {/* TEXTURA SUTIL */}
 
         <div
           className="absolute inset-0 pointer-events-none"
@@ -129,61 +117,38 @@ export function HeroSection() {
           }}
         />
 
-
-        {/* CONTENT */}
+        {/* CONTENIDO */}
 
         <div className="relative z-10 flex flex-col items-center text-center px-6">
 
-          {/* LOGO */}
-
-          <div
-            className={`transition-all duration-700 ease-out ${isLoaded
-                ? "opacity-100 translate-y-0 scale-100"
-                : "opacity-0 translate-y-[20px] scale-[0.98]"
+          <h1
+            className={`text-white font-black tracking-tight transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
+            style={{
+              fontSize: "clamp(52px, 12vw, 120px)"
+            }}
           >
-
-            <h1
-              className="text-white font-black tracking-tight"
-              style={{
-                fontSize: "clamp(48px, 12vw, 120px)",
-                lineHeight: 1
-              }}
-            >
-              ENSYFOODS
-            </h1>
-
-          </div>
-
-
-          {/* TAGLINE */}
+            ENSYFOODS
+          </h1>
 
           <p
-            className={`mt-6 sm:mt-8 text-white/60 uppercase tracking-[0.25em] text-xs sm:text-sm transition-all duration-500 ${isLoaded
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-[20px]"
+            className={`mt-6 text-white/70 uppercase tracking-[0.25em] text-xs sm:text-sm transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
-            style={{ transitionDelay: "0.3s" }}
+            style={{ transitionDelay: "0.2s" }}
           >
             Productos esenciales · Entrega rápida
           </p>
 
-
-          {/* CTA */}
-
           <button
             onClick={scrollToProducts}
-            className={`mt-8 sm:mt-10 bg-[#E8752A] text-white px-8 py-3 sm:px-10 sm:py-4 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:-translate-y-[3px] hover:shadow-xl hover:shadow-[#E8752A]/40 ${isLoaded
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-[20px]"
+            className={`mt-8 bg-[#E8752A] text-white px-8 py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#E8752A]/40 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
-            style={{ transitionDelay: "0.5s" }}
+            style={{ transitionDelay: "0.4s" }}
           >
             Ver productos →
           </button>
 
         </div>
-
 
         {/* SCROLL INDICATOR */}
 
@@ -198,7 +163,6 @@ export function HeroSection() {
         </div>
 
       </section>
-
     </>
   )
 }
