@@ -60,9 +60,7 @@ export function CatalogSection() {
         <div
           className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#E8752A]' : 'bg-[#1B3A6B]'
             }`}
-          style={{
-            transform: isOpen ? 'rotate(0deg)' : 'rotate(45deg)'
-          }}
+          style={{ transform: isOpen ? 'rotate(0deg)' : 'rotate(45deg)' }}
         >
           {isOpen ? (
             <X className="w-4 h-4 text-white" />
@@ -76,25 +74,25 @@ export function CatalogSection() {
       <div
         className="overflow-hidden transition-all duration-500"
         style={{
-          maxHeight: isOpen ? '2000px' : '0',
+          maxHeight: isOpen ? '3000px' : '0',
           transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
         }}
       >
         <div className="py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
 
-          {/* TÍTULO */}
+          {/* Título */}
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Catálogo <span className="text-[#E8752A]">ENSYFOODS</span>
           </h2>
 
-          {/* Category filters - CON EMOJIS */}
-          <div className="flex justify-center mb-8">
-            <div className="flex bg-white rounded-full p-1.5 shadow-sm border border-gray-200">
+          {/* ✅ Filtros deslizables en mobile */}
+          <div className="overflow-x-auto pb-2 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="flex gap-2 sm:justify-center w-max sm:w-full bg-white rounded-full p-1.5 shadow-sm border border-gray-200 min-w-0">
               {categories.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === cat.id
+                  className={`flex-shrink-0 flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap ${activeCategory === cat.id
                       ? 'bg-[#E8752A] text-white shadow-md'
                       : 'text-gray-600 hover:text-[#E8752A] hover:bg-gray-50'
                     }`}
@@ -106,7 +104,7 @@ export function CatalogSection() {
             </div>
           </div>
 
-          {/* All screens: Grid view */}
+          {/* Grid de productos */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
             {filteredProducts.map((product, index) => (
               <div
@@ -115,9 +113,7 @@ export function CatalogSection() {
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-[18px]'
                   }`}
-                style={{
-                  transitionDelay: `${0.1 + index * 0.05}s`
-                }}
+                style={{ transitionDelay: `${0.1 + index * 0.05}s` }}
               >
                 <ProductCard product={product} variant="catalog" />
               </div>

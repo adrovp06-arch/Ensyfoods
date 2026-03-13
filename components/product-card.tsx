@@ -46,7 +46,6 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image area - 56% */}
       <div className="relative h-0 pb-[56%] overflow-hidden bg-[#F7F4EF]">
         <Image
           src={product.image}
@@ -71,7 +70,6 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
         )}
       </div>
 
-      {/* Product info */}
       <div className="p-4 sm:p-6">
         <span className="text-[9px] uppercase tracking-[0.15em] text-[#E8752A] font-bold">
           {product.category}
@@ -160,11 +158,9 @@ export function ProductCard({ product, variant = 'star' }: ProductCardProps) {
 
 function CatalogCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
-  // ✅ CAMBIO: agregado openCart
   const { addItem, updateQuantity, getItemQuantity, openCart } = useCartStore()
   const quantity = getItemQuantity(product.id)
 
-  // ✅ CAMBIO: agrega y abre el carrito inmediatamente
   const handleAdd = () => {
     addItem(product)
     openCart()
@@ -247,14 +243,13 @@ function CatalogCard({ product }: { product: Product }) {
             </span>
           </div>
 
-          {/* ✅ CAMBIO: botón siempre naranja, abre carrito al tocar */}
+          {/* ✅ Siempre muestra "Agregar" — sin + en mobile */}
           <button
             onClick={handleAdd}
-            className="flex-1 sm:flex-none bg-[#E8752A] text-white h-8 sm:h-10 px-3 sm:px-5 rounded-full font-extrabold text-[11px] sm:text-[13px] flex items-center justify-center gap-1.5 transition-all duration-[220ms] hover:-translate-y-0.5"
+            className="flex-shrink-0 bg-[#E8752A] text-white h-8 sm:h-10 px-3 sm:px-5 rounded-full font-extrabold text-[11px] sm:text-[13px] flex items-center justify-center transition-all duration-[220ms] hover:-translate-y-0.5"
             style={{ boxShadow: '0 4px 14px rgba(232,117,42,0.35)' }}
           >
-            <span className="hidden sm:inline">Agregar</span>
-            <span className="sm:hidden">+</span>
+            Agregar
           </button>
         </div>
       </div>
