@@ -18,7 +18,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-      {/* IMAGEN DESKTOP - Optimizada con alt descriptivo y calidad */}
+      {/* IMAGEN DESKTOP - Optimizada con alt descriptivo (sin quality si unoptimized: true) */}
       <Image
         src="/image.jpg"
         alt="ENSYFOODS Guatemala - Distribuidora de alimentos importados: huevos, café, carne y carbón con entrega rápida"
@@ -26,10 +26,10 @@ export function HeroSection() {
         priority
         sizes="100vw"
         className="object-cover object-center hidden md:block"
-        quality={85}
+      // ✅ quality={85} REMOVIDO para compatibilidad con unoptimized: true
       />
 
-      {/* IMAGEN MOVIL - Optimizada con alt descriptivo y calidad */}
+      {/* IMAGEN MOVIL - Optimizada con alt descriptivo (sin quality si unoptimized: true) */}
       <Image
         src="/image-mobile.jpg"
         alt="Catálogo ENSYFOODS - Productos esenciales importados en Guatemala: huevos frescos, café premium, carne y carbón"
@@ -37,7 +37,7 @@ export function HeroSection() {
         priority
         sizes="100vw"
         className="object-cover object-center md:hidden"
-        quality={85}
+      // ✅ quality={85} REMOVIDO para compatibilidad con unoptimized: true
       />
 
       {/* OVERLAY OSCURO */}
